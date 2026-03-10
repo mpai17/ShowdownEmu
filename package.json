@@ -1,0 +1,24 @@
+{
+  "name": "showdownemu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpai17/ShowdownEmu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mpai17/ShowdownEmu/issues"
+  },
+  "homepage": "https://github.com/mpai17/ShowdownEmu#readme",
+  "dependencies": {
+    "puppeteer": "^24.38.0"
+  }
+}
