@@ -1,6 +1,3 @@
-[submodule "pokeRBY_showdown"]
-	path = pokeRBY_showdown
-	url = https://github.com/mpai17/pokeyellow.git
 [submodule "EmulatorJS_showdown"]
 	path = EmulatorJS_showdown
 	url = https://github.com/mpai17/EmulatorJS.git
