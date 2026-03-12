@@ -55,7 +55,12 @@ function proxyLogin(req, res) {
 
 async function serveStatic(req, res) {
   const urlPath = req.url.split('?')[0];
-  const filePath = join(STATIC_DIR, urlPath === '/' ? '/showdown.html' : urlPath);
+  if (urlPath === '/') {
+    res.writeHead(302, { 'Location': '/showdown/showdown.html' });
+    res.end();
+    return;
+  }
+  const filePath = join(STATIC_DIR, urlPath);
 
   // Prevent directory traversal
   if (!filePath.startsWith(STATIC_DIR)) {
@@ -119,5 +124,5 @@ createServer((req, res) => {
     serveStatic(req, res);
   }
 }).listen(PORT, () => {
-  console.log(`ShowdownEmu dev server: http://localhost:${PORT}`);
+  console.log(`Showdown EmuLink dev server: http://localhost:${PORT}`);
 });

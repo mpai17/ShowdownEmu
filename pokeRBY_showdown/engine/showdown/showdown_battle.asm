@@ -75,7 +75,12 @@ ShowdownSetDamage::
 ; ShowdownMoveHitTest
 ; Reads miss flag and effectiveness from override buffer.
 ; Offset +3 = miss byte, +4 = effectiveness byte.
+; If AdjustDamageForMoveType already found type immunity (wDamageMultipliers = 0),
+; preserve it — the ROM's Gen 1 type chart is authoritative for immunities.
 ShowdownMoveHitTest::
+	ld a, [wDamageMultipliers]
+	and EFFECTIVENESS_MASK
+	ret z           ; type chart says immune — keep wMoveMissed=1 and effectiveness=0
 	call GetShowdownOverrideBase
 	inc hl          ; skip DamageHi
 	inc hl          ; skip DamageLo

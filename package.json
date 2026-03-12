@@ -1,5 +1,5 @@
 {
-  "name": "showdownemu",
+  "name": "showdown-emulink",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mpai17/ShowdownEmu.git"
+    "url": "git+https://github.com/mpai17/ShowdownEmuLink.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/mpai17/ShowdownEmu/issues"
+    "url": "https://github.com/mpai17/ShowdownEmuLink/issues"
   },
-  "homepage": "https://github.com/mpai17/ShowdownEmu#readme",
+  "homepage": "https://github.com/mpai17/ShowdownEmuLink#readme",
   "dependencies": {
     "puppeteer": "^24.38.0",
     "ws": "^8.19.0"

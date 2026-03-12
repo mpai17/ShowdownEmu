@@ -75,7 +75,7 @@ async function runOnce(browser, runNum) {
     });
   });
 
-  await page.goto(`http://localhost:${PORT}/test.html?test`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`http://localhost:${PORT}/showdown/test.html?test`, { waitUntil: 'domcontentloaded' });
   const completed = await done;
 
   await page.close();
