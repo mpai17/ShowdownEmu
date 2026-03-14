@@ -62,7 +62,7 @@ EMUJS_ROMS := ../EmulatorJS_showdown/roms
 
 all: $(roms)
 	@mkdir -p $(EMUJS_ROMS) && \
-		cp -u pokeyellow.gbc $(EMUJS_ROMS)/pokeyellow.gbc && \
+		cp pokeyellow.gbc $(EMUJS_ROMS)/pokeyellow.gbc && \
 		echo "Copied pokeyellow.gbc → $(EMUJS_ROMS)/"
 yellow:       pokeyellow.gbc
 yellow_debug: pokeyellow_debug.gbc
