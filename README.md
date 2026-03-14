@@ -98,6 +98,7 @@ ShowdownEmuLink/
         showdown-bridge-callbacks.js Connection callbacks, battle end
         showdown-bridge-sync.js      Status/HP sync, desync detection
         showdown-bridge-format.js    Debug logging, HP/status parsing
+        showdown-bridge-persist.js   Save state persistence for refresh
     roms/pokeyellow.gbc        Built ROM (copy from pokeRBY_showdown/)
 ```
 
