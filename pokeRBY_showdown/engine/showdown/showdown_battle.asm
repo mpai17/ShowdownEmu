@@ -89,4 +89,10 @@ ShowdownMoveHitTest::
 	ld [wMoveMissed], a
 	ld a, [hl]      ; read effectiveness
 	ld [wDamageMultipliers], a
+	and EFFECTIVENESS_MASK
+	ret nz          ; non-zero effectiveness — normal hit or resist
+	; Override says immune (effectiveness=0) but ROM type chart missed it.
+	; Force wMoveMissed=1 so the ROM shows "It doesn't affect" correctly.
+	ld a, 1
+	ld [wMoveMissed], a
 	ret
