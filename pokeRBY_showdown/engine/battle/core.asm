@@ -311,6 +311,15 @@ MainInBattleLoop:
 	and (1 << THRASHING_ABOUT) | (1 << CHARGING_UP) ; check if the player is thrashing about or charging for an attack
 	jr nz, .selectEnemyMove ; if so, jump
 ; the player is neither thrashing about nor charging for an attack
+	; Signal JS bridge that battle menu is about to appear (Phase 0).
+	; Must be BEFORE DisplayBattleMenu which blocks waiting for input.
+	; Cycle: 3 (executing) → 0 (menu) → 1 (selected) → 2 (ready) → 3
+	ld a, [wShowdownConnected]
+	and a
+	jr z, .skipPhaseResetMenu
+	xor a
+	ld [wSD_Phase], a
+.skipPhaseResetMenu
 	call DisplayBattleMenu ; show battle menu
 	ret c ; return if player ran from battle
 	ld a, [wEscapedFromBattle]

@@ -91,6 +91,32 @@ async function serveConfig(req, res) {
   }
 }
 
+async function saveConfig(req, res) {
+  let body = '';
+  req.on('data', c => body += c);
+  req.on('end', async () => {
+    try {
+      const patch = JSON.parse(body);
+      let cfg = {};
+      try { cfg = JSON.parse(await readFile(join(import.meta.dirname, 'config.json'), 'utf8')); } catch {}
+      // Deep merge patch into config
+      for (const [k, v] of Object.entries(patch)) {
+        if (typeof v === 'object' && v !== null && !Array.isArray(v)) {
+          cfg[k] = { ...(cfg[k] || {}), ...v };
+        } else {
+          cfg[k] = v;
+        }
+      }
+      await writeFile(join(import.meta.dirname, 'config.json'), JSON.stringify(cfg, null, 2) + '\n');
+      res.writeHead(200);
+      res.end('ok');
+    } catch (e) {
+      res.writeHead(500);
+      res.end(e.message);
+    }
+  });
+}
+
 function handleLog(req, res) {
   let body = '';
   req.on('data', c => body += c);
@@ -114,6 +140,8 @@ async function clearLog(req, res) {
 createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/api/login') {
     proxyLogin(req, res);
+  } else if (req.method === 'POST' && req.url === '/api/config') {
+    saveConfig(req, res);
   } else if (req.method === 'POST' && req.url === '/api/log') {
     handleLog(req, res);
   } else if (req.url === '/api/clear-log') {
